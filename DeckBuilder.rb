@@ -18,11 +18,23 @@ class Tincture
 	def to_s
 		@tinc
 	end
+
+	def metal?
+		(@tinc == "Argent") || (@tinc == "Or")
+	end
+
+	def color?
+		(@tinc == "Gules") || (@tinc == "Azure")
+	end
 	
 	def compare(other)
 		sim = 0
 		sim += 1 if @tinc == other.tinc
 		return sim
+	end
+
+	def contrast?(other)
+		!(self.metal? && other.metal?) && !(self.color? && other.color?) && !(@tinc == other.tinc)
 	end
 	
 	attr_accessor :tinc
@@ -111,7 +123,7 @@ class Vassal
 		@escutcheon = Escutcheon.new(escutcheon)
 		@field = Field.new()
 		@charges = []
-		
+
 		blazon.each_with_index do |arg, i|
 			if TINCTURES.include?(arg) && charges.length == 0
 				@field.add(arg)
@@ -129,17 +141,23 @@ class Vassal
 	# Attribute Accessors for all instance variables (e.g. vassal.name, vassal.name=)
 	attr_accessor :name, :escutcheon, :field, :charges, :chg_types, :chg_tincs
 
-	def to_s
+	def to_s(mode=1)
 		charge_str = @charges.collect {|c| c.to_s}
-		"Name: #{@name}\n" + 
-		"Escutcheon: #{@escutcheon.to_s}\n" + 
-		"Field: #{@field.to_s}\n" + 
-		"Charges: #{charge_str.join(", ")}\n"
+		case mode
+		when 1
+			"#{@name}: escutcheon #{@escutcheon.to_s}; field(s) #{@field.to_s}; charge(s) #{charge_str.join(", ")}."
+		when 2	
+			"#{@name}\n" + 
+			"Escutcheon: #{@escutcheon.to_s}\n" + 
+			"Field: #{@field.to_s}\n" + 
+			"Charges: #{charge_str.join(", ")}\n"
+		else
+			@name
+		end
 	end
 	
 	def compare(other)
 		sim = 0
-		
 		sim += @escutcheon.compare(other.escutcheon)
 		sim	+= @field.compare(other.field)
 		
@@ -153,6 +171,42 @@ class Vassal
 
 		return sim
 	end
+
+	# Method for generating a random, well-formed vassal
+	def self.random(name="RandomVassal",num_fields=1,num_chg_types=1,num_chg_tincs=1,escAry=Array.new(ESCUTCHEONS), \
+			fldAry=Array.new(TINCTURES),chgTypeAry=Array.new(CHARGES),chgTincAry=Array.new(TINCTURES))
+
+		blazon = []
+		fldAry.sample(num_fields).each {|f| blazon.push(f)}
+
+		chgTincAry.keep_if {|t| Tincture.new(t).contrast?(Tincture.new(blazon[0]))} if num_fields == 1
+
+		if num_chg_types == 1 && num_chg_tincs == 1
+			chgTincAry.keep_if {|t| !blazon.include?(t)} if num_fields == 2
+			chgType = chgTypeAry.sample
+			chgTinc = chgTincAry.sample
+			blazon.push(chgType)
+			blazon.push(chgTinc)
+		else
+			if num_chg_types == 1 then chgA_type = chgB_type = chgTypeAry.sample end
+			if num_chg_types == 2 then chgA_type,chgB_type = chgTypeAry.sample(2) end
+
+			chgTincAry_1 = chgTincAry.select {|t| Tincture.new(t).contrast?(Tincture.new(blazon[0]))}
+			chgTincAry_2 = chgTincAry.select {|t| Tincture.new(t).contrast?(num_fields == 2 ? Tincture.new(blazon[1]) : Tincture.new(blazon[0]))}
+
+			chgA_tinc = chgTincAry_1.sample
+			chgTincAry_2.delete(chgA_tinc)
+			chgB_tinc = num_chg_tincs == 2 ? chgTincAry_2.sample : chgA_tinc
+
+			blazon.push(chgA_type)
+			blazon.push(chgA_tinc)
+			blazon.push(chgB_type)
+			blazon.push(chgB_tinc)
+		end
+
+		return Vassal.new(name,escAry.sample,*blazon)
+	end
+
 end
 
 # Defines a Deck of Vassals
@@ -181,7 +235,11 @@ class Deck
 	end
 	
 	def to_s
-		@deck.each {|v| v.to_s}
+		@deck.each {|v| "#{v.to_s}\n"}
+	end
+
+	def length
+		@deck.length
 	end
 	
 	# Gets a Vassals's position in the array, given its name
@@ -191,16 +249,12 @@ class Deck
 		end
 	end
 	
-	# Writes the deck into a csv file
-	def save
-		#print "Enter a file name: "
-		#filename = gets.chomp
-		filename = "BIGTEST"
-		print filename
+	# Writes the deck into a file
+	def save(fname)
+		filename = fname
+		puts "Saving #{filename}"
 		deckFile = File.new("#{filename}.txt", "w")
-		@deck.each do |v|
-			deckFile.puts(v.name + "," + v.blazon.join(","))
-		end
+		deckFile.puts(self.to_s)
 	end
 	
 	# Reads a csv file and adds those vassals to the deck
@@ -208,88 +262,61 @@ class Deck
 		# FILL IN
 	end
 	
-	# Compares the aspects of this vassal to another vassal and returns the similarity value.
-	def compare(a, b)
-		v1 = @deck[a]
-		v2 = @deck[b]
-		sim = 0
-		v1.blazon.each {|k,v| sim += 1 if v == v2.blazon[k] && v != 0 }
-		
-		# Increments similarity for duplicate types, e.g. split fields and multiple charges
-		sim += 1 if v1.blazon["Field A"] == v2.blazon["Field B"] && v1.blazon["Field A"] != 0 && v1.blazon["Field A"] != v2.blazon["Field A"]
-		sim += 1 if v1.blazon["Charge A"] == v2.blazon["Charge B"] && v1.blazon["Charge A"] != 0 && v1.blazon["Charge A"] != v2.blazon["Charge A"]
-		sim += 1 if v1.blazon["Charge A Tincture"] == v2.blazon["Charge B Tincture"] && v1.blazon["Charge A Tincture"] != 0 && v1.blazon["Charge A Tincture"] != v2.blazon["Charge A Tincture"]
-		sim
-	end
-	
-	# Calculates and returns the average connectivity of an individual with the rest of the deck
-	def vassConnect
-		# FILL IN
-	end
-	
-	# Calculates and returns the average connectivity of the deck
-	def deckConnect
-		# FILL IN
-	end
-	
-	# Recursive method for filling a Deck with all possible vassals.
-	def fill_up
-		i = 0
-		
-	end
-	
-	
-	
-	def fill_up(arr)
-		if arr.length < BLAZ_TYPE.length
-			BLAZ_TYPE[arr.length].keys.each do |k|
-				fill_up(Array.new(arr << k))
-				arr.pop
-			end
-		else
-			testnum = 0
-			arr.each_with_index { |n,i| testnum += n*10**(7-i)}
-			@deck.push(Vassal.new("Test#{testnum}",arr))
-			return
+	# Returns an array of the vassal's connectivity to the other vassals in the deck.
+	def connectivity(vassal)
+		connAry = []
+		@deck.each do |v|
+			connAry << vassal.compare(v) unless vassal == v 
 		end
-	end		
+		return connAry
+	end
+
+	# Fills deck with a random assortment of cards based on defined restrictions and targets
+	# deck_size is the target total size of the deck
+	# max_conn is the maximum level of connectivity allowable between any two cards
+	# conn_targ is the target minimum average level of connectivity
+	# asp_toler is amount of imbalance allowed between the count one aspect and any other aspect of the same class (i.e. # of each escutcheon type, etc.)
+	# split_prop is the proportion of the deck that will have split fields
+	# dblchg_prop is the proportion of the deck that will have two charges
+	def self.randomFill(deck_size=20,max_conn=4,conn_targ=1.0,asp_toler=1,split_prop=0.5,dblchg_prop=0.5)
+		randomDeck = Deck.new
+		escut_count = Hash[ESCUTCHEONS.collect {|e| [e,0]}]
+		fld_count = Hash[TINCTURES.collect {|t| [t,0]}]
+		chgType_count = Hash[CHARGES.collect {|c| [c,0]}]
+		chgTinc_count = Hash[TINCTURES.collect {|t| [t,0]}]
+
+		while randomDeck.length < deck_size
+			# generate allowable aspect arrays
+			escAry = (escut_count.select {|k,v| v <= (escut_count.values.min + asp_toler)}).keys
+			fldAry = (fld_count.select {|k,v| v <= (fld_count.values.min + asp_toler)}).keys
+			chgTypeAry = (chgType_count.select {|k,v| v <= (chgType_count.values.min + asp_toler)}).keys
+			chgTincAry = (chgTinc_count.select {|k,v| v <= (chgTinc_count.values.min + asp_toler)}).keys
+			
+			# add a random vassal using allowable aspect arrays as inputs
+			newVass = Vassal.random("RandomHouse",1,1,1,escAry,fldAry,chgTypeAry,chgTincAry)
+			randomDeck.add(newVass)
+			puts newVass.to_s
+
+
+			# check stats and determine if vassal is acceptable
+
+			# if acceptable, update stats and allowable aspect arrays
+			escut_count[newVass.escutcheon.to_s] += 1
+			newVass.field.fields.each {|f| fld_count[f.to_s] += 1}
+			newVass.chg_types.each {|c| chgType_count[c] += 1}
+			newVass.chg_tincs.each {|t| chgTinc_count[t.to_s] += 1}
+
+			puts escut_count
+			puts fld_count
+			puts chgType_count
+			puts chgTinc_count
+		end
+
+		return randomDeck
+	end
 
 end
 
 
 
-puts "MAKING VASSALS"
-garcia = Vassal.new("Garcia", "Iberian", "Argent", "Or", "Eagle", "Sable", "Lion", "Azure")
-vanW = Vassal.new("VanWeringh", "Iberian", "Argent", "Or", "Lion", "Sable", "Eagle", "Azure")
-puts garcia.to_s
-puts vanW.to_s
-puts garcia.compare(vanW)
-puts garcia.chg_types
-puts garcia.chg_tincs
-
-#vanW = Vassal.new("VanWeringh",[1,1,2,4,3,2,1])
-
-#puts "MAKING DECK"
-#deckTest = Deck.new
-#deckTest.append(garcia)
-#deckTest.append(vanW)
-
-#puts "FILLING DECK"
-#deckTest.fill_up([])
-
-#puts "SAVING DECK"
-#deckTest.save
-
-
-#deckTest.inspect
-#puts deckTest.compare(0,1)
-#deckTest.remove(deckTest.getPos("Garcia"))
-
-#target = open("Vtest.txt",'w')
-#target.write(garcia.inspect)
-#target.close
-
-#NOTES from JP
-# Add & subtract vassals at random to optimize
-# JP: Consider using classes for all this
-
+rando = Deck.randomFill
