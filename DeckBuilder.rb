@@ -34,6 +34,7 @@ class Tincture
 	end
 
 	def contrast?(other)
+		return false if other == nil
 		!(self.metal? && other.metal?) && !(self.color? && other.color?) && !(@tinc == other.tinc)
 	end
 	
@@ -203,12 +204,18 @@ class Vassal
 			chgTincAry_2.delete(chgA_tinc)
 			chgB_tinc = num_chg_tincs == 2 ? chgTincAry_2.sample : chgA_tinc
 
+			#puts "Charge Tinctures: #{chgA_tinc}, #{chgB_tinc}"
+
 			blazon.push(chgA_type)
 			blazon.push(chgA_tinc)
 			blazon.push(chgB_type)
 			blazon.push(chgB_tinc)
 
+			# Return false if either charge tincture is nil
 			return false if chgA_tinc == nil || chgB_tinc == nil
+
+			# Return false if any charge doesn't contrast with its background.
+			return false if !Tincture.new(blazon[0]).contrast?(Tincture.new(chgA_tinc)) || !Tincture.new(blazon[1]).contrast?(Tincture.new(chgB_tinc))
 		end
 
 		return Vassal.new(name,escAry.sample,*blazon)
@@ -404,6 +411,7 @@ class Deck
 			
 			# add a random vassal using allowable aspect arrays as inputs
 			newVass = Vassal.random("RandomHouse #{randomDeck.length + 1}",fldCount,chgTypeCount,chgTincCount,escAry,fldAry,chgTypeAry,chgTincAry)
+			#puts newVass.to_s
 
 			# Random Vassal function fails, remove the last vassal created and try again.
 			if newVass == false
@@ -425,8 +433,8 @@ class Deck
 			# puts randomDeck.chgTincCount
 			# puts errorCount
 
-			if errorCount > 100
-				#puts "Them's the breaks!"
+			if errorCount > 200
+				puts "[FAIL]"
 				#puts "Total Connectivity: #{randomDeck.grand_conn}"
 				return false
 			end
@@ -450,22 +458,24 @@ class Deck
 
 end
 
+# 10.times do |i|
+# 	puts Vassal.random("R#{i}",2,2,1)
+# end
 
-10000.times do |i|
+# puts Deck.randomFill.to_s
+
+20000.times do |i|
 	rando = Deck.randomFill
-	print "#{i+10001}, "
+	print "A#{i+1}, "
 	if rando && \
-			rando.chgComboCount("Crescent").keys.include?("Argent" || "Azure" || "Or") && \
+			rando.chgComboCount("Crescent").keys.include?("Argent" && "Or") && \
 			rando.chgComboCount("Fleur-de-Lis").keys.include?("Or") && \
 			rando.chgComboCount("Cross").keys.include?("Gules" || "Sable" || "Azure" || "Argent" || "Or") && \
 			rando.chgComboCount("Rose").keys.include?("Gules" || "Azure" || "Sable" || "Argent") && \
 			rando.chgComboCount("Lion").keys.include?("Or") && \
-			rando.chgComboCount("Eagle").keys.include?("Azure" || "Sable")
-		puts "AWESOME!!! #{i+10001}"
-		rando.save("Random Deck #{i+10001}") if rando
+			rando.chgComboCount("Eagle").keys.include?("Azure" && "Sable")
+		puts "AWESOME!!! A#{i+1}"
+		rando.save("Random Deck A#{i+1}") if rando
 	end
-
 end
 
-
-# Problem: Oscillates between 1 field, 1 charge vassals and 2 field, 2 unique charge vassals... need to get it to do a diversity
