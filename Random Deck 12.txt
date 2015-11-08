@@ -1,0 +1,93 @@
+***STATS***
+
+Escutcheon Count: {"Iberian"=>27, "Swiss"=>27, "French"=>26}
+Field Count: {"Argent"=>23, "Or"=>25, "Sable"=>23, "Gules"=>25, "Azure"=>24}
+Charge Type Count: {"Crescent"=>20, "Fleur-de-Lis"=>21, "Cross"=>20, "Rose"=>21, "Lion"=>19, "Eagle"=>19}
+Charge Tincture Count: {"Argent"=>25, "Or"=>23, "Sable"=>25, "Gules"=>24, "Azure"=>23}
+
+Split Field Proportion: 40.0
+Double Charge Type Proportion: 40.0
+Double Charge Tincture Proportion: 40.0
+
+Deck Length: 80
+Total Connectivity: 1.5415625
+RandomHouse: escutcheon Swiss; field(s) Or; charge(s) Lion Azure.
+RandomHouse: escutcheon Iberian; field(s) Argent, Sable; charge(s) Crescent Gules.
+RandomHouse: escutcheon Iberian; field(s) Or; charge(s) Fleur-de-Lis Gules, Lion Gules.
+RandomHouse: escutcheon French; field(s) Sable, Azure; charge(s) Fleur-de-Lis Argent, Crescent Argent.
+RandomHouse: escutcheon Swiss; field(s) Argent; charge(s) Rose Sable, Rose Azure.
+RandomHouse: escutcheon Iberian; field(s) Azure, Gules; charge(s) Rose Sable, Rose Or.
+RandomHouse: escutcheon Swiss; field(s) Azure; charge(s) Cross Argent, Eagle Sable.
+RandomHouse: escutcheon French; field(s) Argent, Or; charge(s) Crescent Gules, Cross Azure.
+RandomHouse: escutcheon Swiss; field(s) Gules; charge(s) Lion Argent.
+RandomHouse: escutcheon Iberian; field(s) Sable, Gules; charge(s) Fleur-de-Lis Or.
+RandomHouse: escutcheon French; field(s) Or; charge(s) Eagle Gules, Cross Gules.
+RandomHouse: escutcheon Swiss; field(s) Argent, Or; charge(s) Rose Sable, Eagle Sable.
+RandomHouse: escutcheon French; field(s) Gules; charge(s) Fleur-de-Lis Or, Fleur-de-Lis Argent.
+RandomHouse: escutcheon Swiss; field(s) Gules, Sable; charge(s) Fleur-de-Lis Or, Fleur-de-Lis Azure.
+RandomHouse: escutcheon Iberian; field(s) Sable; charge(s) Crescent Or, Cross Azure.
+RandomHouse: escutcheon French; field(s) Azure, Argent; charge(s) Lion Argent, Rose Azure.
+RandomHouse: escutcheon Iberian; field(s) Or; charge(s) Rose Gules.
+RandomHouse: escutcheon Iberian; field(s) Gules, Sable; charge(s) Lion Argent.
+RandomHouse: escutcheon Swiss; field(s) Azure; charge(s) Eagle Or, Cross Or.
+RandomHouse: escutcheon French; field(s) Argent, Sable; charge(s) Crescent Sable, Cross Sable.
+RandomHouse: escutcheon Swiss; field(s) Or; charge(s) Crescent Sable, Crescent Azure.
+RandomHouse: escutcheon Iberian; field(s) Gules, Argent; charge(s) Eagle Sable, Eagle Gules.
+RandomHouse: escutcheon French; field(s) Azure; charge(s) Eagle Argent, Fleur-de-Lis Or.
+RandomHouse: escutcheon Swiss; field(s) Azure, Gules; charge(s) Fleur-de-Lis Argent, Lion Or.
+RandomHouse: escutcheon Iberian; field(s) Argent; charge(s) Eagle Gules.
+RandomHouse: escutcheon French; field(s) Sable, Azure; charge(s) Lion Argent.
+RandomHouse: escutcheon Iberian; field(s) Gules; charge(s) Rose Sable, Cross Sable.
+RandomHouse: escutcheon Swiss; field(s) Argent, Or; charge(s) Cross Sable, Eagle Sable.
+RandomHouse: escutcheon French; field(s) Argent; charge(s) Rose Azure, Rose Gules.
+RandomHouse: escutcheon Iberian; field(s) Or, Sable; charge(s) Lion Gules, Lion Or.
+RandomHouse: escutcheon French; field(s) Azure; charge(s) Crescent Or, Fleur-de-Lis Sable.
+RandomHouse: escutcheon French; field(s) Gules, Argent; charge(s) Fleur-de-Lis Argent, Rose Azure.
+RandomHouse: escutcheon Swiss; field(s) Azure; charge(s) Crescent Argent.
+RandomHouse: escutcheon French; field(s) Azure, Or; charge(s) Fleur-de-Lis Sable.
+RandomHouse: escutcheon Swiss; field(s) Sable; charge(s) Crescent Or, Eagle Or.
+RandomHouse: escutcheon Swiss; field(s) Argent, Gules; charge(s) Rose Gules, Crescent Gules.
+RandomHouse: escutcheon French; field(s) Sable; charge(s) Cross Azure, Cross Gules.
+RandomHouse: escutcheon Iberian; field(s) Azure, Gules; charge(s) Lion Sable, Lion Or.
+RandomHouse: escutcheon Swiss; field(s) Or; charge(s) Lion Gules, Rose Azure.
+RandomHouse: escutcheon Iberian; field(s) Azure, Gules; charge(s) Eagle Sable, Cross Argent.
+RandomHouse: escutcheon French; field(s) Argent; charge(s) Eagle Azure.
+RandomHouse: escutcheon Iberian; field(s) Or, Sable; charge(s) Rose Argent.
+RandomHouse: escutcheon French; field(s) Gules; charge(s) Cross Or, Lion Or.
+RandomHouse: escutcheon Iberian; field(s) Sable, Azure; charge(s) Rose Argent, Crescent Argent.
+RandomHouse: escutcheon Swiss; field(s) Or; charge(s) Crescent Sable, Crescent Gules.
+RandomHouse: escutcheon Swiss; field(s) Or, Sable; charge(s) Lion Azure, Lion Or.
+RandomHouse: escutcheon Iberian; field(s) Or; charge(s) Eagle Sable, Fleur-de-Lis Azure.
+RandomHouse: escutcheon Swiss; field(s) Gules, Azure; charge(s) Lion Argent, Cross Or.
+RandomHouse: escutcheon Iberian; field(s) Argent; charge(s) Eagle Gules.
+RandomHouse: escutcheon French; field(s) Gules, Argent; charge(s) Rose Or.
+RandomHouse: escutcheon Swiss; field(s) Sable; charge(s) Crescent Argent, Fleur-de-Lis Argent.
+RandomHouse: escutcheon Iberian; field(s) Gules, Azure; charge(s) Crescent Sable, Cross Sable.
+RandomHouse: escutcheon French; field(s) Or; charge(s) Lion Azure, Lion Gules.
+RandomHouse: escutcheon Swiss; field(s) Argent, Azure; charge(s) Eagle Azure, Eagle Or.
+RandomHouse: escutcheon French; field(s) Sable; charge(s) Fleur-de-Lis Azure, Cross Argent.
+RandomHouse: escutcheon French; field(s) Azure, Sable; charge(s) Fleur-de-Lis Sable, Cross Gules.
+RandomHouse: escutcheon French; field(s) Gules; charge(s) Eagle Argent.
+RandomHouse: escutcheon Swiss; field(s) Sable, Or; charge(s) Crescent Gules.
+RandomHouse: escutcheon Iberian; field(s) Argent; charge(s) Rose Gules, Fleur-de-Lis Gules.
+RandomHouse: escutcheon French; field(s) Argent, Or; charge(s) Eagle Gules, Fleur-de-Lis Gules.
+RandomHouse: escutcheon Iberian; field(s) Azure; charge(s) Rose Or, Rose Sable.
+RandomHouse: escutcheon Iberian; field(s) Gules, Sable; charge(s) Cross Or, Cross Azure.
+RandomHouse: escutcheon Iberian; field(s) Argent; charge(s) Crescent Gules, Lion Sable.
+RandomHouse: escutcheon French; field(s) Azure, Or; charge(s) Lion Sable, Rose Azure.
+RandomHouse: escutcheon Swiss; field(s) Or; charge(s) Cross Azure.
+RandomHouse: escutcheon French; field(s) Or, Azure; charge(s) Crescent Argent.
+RandomHouse: escutcheon Swiss; field(s) Argent; charge(s) Rose Azure, Fleur-de-Lis Azure.
+RandomHouse: escutcheon Iberian; field(s) Sable, Gules; charge(s) Eagle Argent, Cross Argent.
+RandomHouse: escutcheon Iberian; field(s) Gules; charge(s) Rose Sable, Rose Argent.
+RandomHouse: escutcheon French; field(s) Gules, Or; charge(s) Fleur-de-Lis Or, Fleur-de-Lis Gules.
+RandomHouse: escutcheon Swiss; field(s) Argent; charge(s) Lion Gules, Crescent Sable.
+RandomHouse: escutcheon French; field(s) Sable, Azure; charge(s) Cross Argent, Crescent Or.
+RandomHouse: escutcheon Iberian; field(s) Azure; charge(s) Rose Or.
+RandomHouse: escutcheon Swiss; field(s) Or, Sable; charge(s) Fleur-de-Lis Azure.
+RandomHouse: escutcheon Iberian; field(s) Argent; charge(s) Lion Gules, Eagle Gules.
+RandomHouse: escutcheon Swiss; field(s) Or, Sable; charge(s) Fleur-de-Lis Azure, Rose Azure.
+RandomHouse: escutcheon Swiss; field(s) Gules; charge(s) Cross Or, Cross Argent.
+RandomHouse: escutcheon Iberian; field(s) Argent, Gules; charge(s) Crescent Sable, Crescent Argent.
+RandomHouse: escutcheon Swiss; field(s) Or; charge(s) Lion Sable, Eagle Gules.
+RandomHouse: escutcheon French; field(s) Azure, Gules; charge(s) Rose Argent, Fleur-de-Lis Sable.

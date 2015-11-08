@@ -1,0 +1,25 @@
+***STATS***
+
+Escutcheon Count: {"Iberian"=>4, "Swiss"=>4, "French"=>4}
+Field Count: {"Argent"=>4, "Or"=>4, "Sable"=>4, "Gules"=>4, "Azure"=>2}
+Charge Type Count: {"Crescent"=>4, "Fleur-de-Lis"=>4, "Cross"=>2, "Rose"=>2, "Lion"=>3, "Eagle"=>3}
+Charge Tincture Count: {"Argent"=>3, "Or"=>3, "Sable"=>4, "Gules"=>2, "Azure"=>4}
+
+Split Field Proportion: 6.0
+Double Charge Type Proportion: 6.0
+Double Charge Tincture Proportion: 4.0
+
+Deck Length: 12
+Total Connectivity: 1.1388888888888888
+RandomHouse: escutcheon Iberian; field(s) Gules; charge(s) Crescent Sable.
+RandomHouse: escutcheon French; field(s) Azure, Sable; charge(s) Crescent Or.
+RandomHouse: escutcheon Swiss; field(s) Argent; charge(s) Lion Gules, Eagle Gules.
+RandomHouse: escutcheon Swiss; field(s) Sable, Or; charge(s) Lion Argent, Rose Argent.
+RandomHouse: escutcheon Iberian; field(s) Gules; charge(s) Fleur-de-Lis Or, Fleur-de-Lis Argent.
+RandomHouse: escutcheon Iberian; field(s) Argent, Sable; charge(s) Cross Sable, Cross Azure.
+RandomHouse: escutcheon French; field(s) Gules; charge(s) Crescent Argent, Lion Or.
+RandomHouse: escutcheon French; field(s) Argent, Azure; charge(s) Eagle Azure, Cross Sable.
+RandomHouse: escutcheon Iberian; field(s) Or; charge(s) Fleur-de-Lis Gules.
+RandomHouse: escutcheon Swiss; field(s) Gules, Argent; charge(s) Eagle Sable.
+RandomHouse: escutcheon Swiss; field(s) Or; charge(s) Fleur-de-Lis Azure, Rose Azure.
+RandomHouse: escutcheon French; field(s) Or, Sable; charge(s) Crescent Azure, Fleur-de-Lis Azure.

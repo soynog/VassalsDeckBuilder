@@ -180,9 +180,9 @@ class Vassal
 		fldAry.sample(num_fields).each {|f| blazon.push(f)}
 
 		chgTincAry.keep_if {|t| Tincture.new(t).contrast?(Tincture.new(blazon[0]))} if num_fields == 1
-
-		# Returns false if the vassal yields any arrays smaller than the needed # of choices (i.e. cannot be created)
-		return false if (escAry.empty? || fldAry.length < num_fields || chgTypeAry.length < num_chg_types || chgTincAry.length < num_chg_tincs)
+		
+		# Returns false if the vassal yields an empty array (e.g. cannot be created)
+		return false if (escAry.empty? || fldAry.empty? || chgTypeAry.empty? || chgTincAry.empty?)
 
 		if num_chg_types == 1 && num_chg_tincs == 1
 			chgTincAry.keep_if {|t| !blazon.include?(t)} if num_fields == 2
@@ -190,8 +190,6 @@ class Vassal
 			chgTinc = chgTincAry.sample
 			blazon.push(chgType)
 			blazon.push(chgTinc)
-
-			return false if chgTinc == nil
 		else
 			if num_chg_types == 1 then chgA_type = chgB_type = chgTypeAry.sample end
 			if num_chg_types == 2 then chgA_type,chgB_type = chgTypeAry.sample(2) end
@@ -207,8 +205,6 @@ class Vassal
 			blazon.push(chgA_tinc)
 			blazon.push(chgB_type)
 			blazon.push(chgB_tinc)
-
-			return false if chgA_tinc == nil || chgB_tinc == nil
 		end
 
 		return Vassal.new(name,escAry.sample,*blazon)
@@ -242,7 +238,7 @@ class Deck
 	end
 	
 	def to_s
-		@deck.each {|v| v.to_s}
+		@deck.each {|v| "#{v.to_s}\n\n"}
 	end
 
 	def length
@@ -261,28 +257,7 @@ class Deck
 		filename = fname
 		puts "Saving #{filename}"
 		deckFile = File.new("#{filename}.txt", "w")
-		deckFile.puts( "***STATS***")
-		deckFile.puts( "\n")
-		deckFile.puts( "Escutcheon Count: #{self.escCount}")
-		deckFile.puts( "Field Count: #{self.fldCount}")
-		deckFile.puts( "Charge Type Count: #{self.chgTypeCount}")
-		deckFile.puts( "Charge Tincture Count: #{self.chgTincCount}")
-		deckFile.puts( "\n")
-		deckFile.puts( "Common Charges:")
-		CHARGES.each do |c|
-			deckFile.puts("#{c}: #{self.chgComboCount(c)}")
-		end
-		deckFile.puts( "\n")
-		deckFile.puts( "Split Field Proportion: #{self.fldSplitCount}")
-		deckFile.puts( "Double Charge Type Proportion: #{self.dblChgTypeCount}")
-		deckFile.puts( "Double Charge Tincture Proportion: #{self.dblChgTincCount}")
-		deckFile.puts( "\n")
-		deckFile.puts( "Deck Length: #{self.length}")
-		deckFile.puts( "Total Connectivity: #{self.grand_conn}")
-		deckFile.puts( "\n")
-		@deck.each do |v|
-			deckFile.puts("#{v.to_s} Connectivity: #{self.connectivity(v).to_s}")
-		end
+		deckFile.puts(self.to_s)
 	end
 	
 	# Reads a csv file and adds those vassals to the deck
@@ -353,27 +328,7 @@ class Deck
 	end
 
 	def fldSplitCount
-		return (@deck.select {|v| v.field.split? }).length.to_f
-	end
 
-	def dblChgTypeCount
-		return (@deck.select {|v| v.chg_types.length > 1}).length.to_f
-	end
-
-	def dblChgTincCount
-		return (@deck.select {|v| v.chg_tincs.length > 1}).length.to_f
-	end
-
-	# Counts the most common color for a given charge type.
-	def chgComboCount(chgType)
-		h = Hash[TINCTURES.collect {|t| [t,0]}]
-		@deck.each do |vass|
-			vass.charges.each do |chg|
-				h[chg.tinc.to_s] += 1 if chg.type == chgType
-			end
-		end
-
-		return h.select {|k,v| v == h.values.max}
 	end
 
 	# Fills deck with a random assortment of cards based on defined restrictions and targets
@@ -383,18 +338,11 @@ class Deck
 	# asp_toler is amount of imbalance allowed between the count one aspect and any other aspect of the same class (i.e. # of each escutcheon type, etc.)
 	# split_prop is the proportion of the deck that will have split fields
 	# dblchg_prop is the proportion of the deck that will have two charges
-	def self.randomFill(deck_size=80,max_conn=4,min_conn=1.0,asp_toler=1,split_fld_prop=0.5,dblchg_type_prop=0.5,dblchg_tinc_prop=0.5)
+	def self.randomFill(deck_size=80,max_conn=4,min_conn=1.0,asp_toler=2,split_prop=0.5,dblchg_prop=0.5)
 		randomDeck = Deck.new
 		errorCount = 0
 
 		while randomDeck.length < deck_size
-			# Determine how many fields and charges for the new vassal
-			fldCount = randomDeck.length % 2 < 1 ? 1 : 2
-			chgTypeCount = randomDeck.length % 4 < 2 ? 1 : 2
-			chgTincCount = randomDeck.length % 8 < 4 ? 1 : 2
-
-			# puts [randomDeck.length,chgTincCount,chgTypeCount,fldCount].to_s
-
 			# generate allowable aspect arrays
 			escAry = (randomDeck.escCount.select {|k,v| v <= (randomDeck.escCount.values.min + asp_toler)}).keys
 			fldAry = (randomDeck.fldCount.select {|k,v| v <= (randomDeck.fldCount.values.min + asp_toler)}).keys
@@ -402,27 +350,29 @@ class Deck
 			chgTincAry = (randomDeck.chgTincCount.select {|k,v| v <= (randomDeck.chgTincCount.values.min + asp_toler)}).keys
 			
 			# add a random vassal using allowable aspect arrays as inputs
-			newVass = Vassal.random("RandomHouse",fldCount,chgTypeCount,chgTincCount,escAry,fldAry,chgTypeAry,chgTincAry)
-
+			newVass = Vassal.random("RandomHouse",1,1,1,escAry,fldAry,chgTypeAry,chgTincAry)
+			
 			# Random Vassal function fails, remove the last vassal created and try again.
 			if newVass == false
-				# puts "____________________________WHOOOOOOOOPS_______________________________"
+				#puts "____________________________WHOOOOOOOOPS_______________________________"
 				randomDeck.deck.pop
 				errorCount += 1
 			# Otherwise, test it for acceptibility.
-			elsif randomDeck.length > 0 && randomDeck.connectivity(newVass)[0] > max_conn
-			 	puts "#{randomDeck.connectivity(newVass)[0]}****************************NO GOOOOOOD*******************************"
-			 	errorCount += 1
+			# elsif randomDeck.length > 10 && (randomDeck.connectivity(newVass)[0] > max_conn || randomDeck.conn_mean(newVass) < min_conn)
+			# 	puts "#{randomDeck.connectivity(newVass)[0]}****************************NO GOOOOOOD*******************************#{randomDeck.conn_mean(newVass)}"
+			# 	errorCount += 1
 			else			
-				# puts newVass.to_s
+				#puts newVass.to_s
+				#puts "Connectivity: #{randomDeck.conn_mean(newVass)}"
 				randomDeck.add(newVass)
+				# check stats and determine if vassal is acceptable
 			end
 
-			# puts randomDeck.escCount
-			# puts randomDeck.fldCount
-			# puts randomDeck.chgTypeCount
-			# puts randomDeck.chgTincCount
-			# puts errorCount
+			#puts randomDeck.escCount
+			#puts randomDeck.fldCount
+			#puts randomDeck.chgTypeCount
+			#puts randomDeck.chgTincCount
+			#puts errorCount
 
 			if errorCount > 100
 				puts "Them's the breaks!"
@@ -431,18 +381,7 @@ class Deck
 			end
 		end
 
-		# puts "\n"
-		# puts "Escutcheon Count: #{randomDeck.escCount}"
-		# puts "Field Count: #{randomDeck.fldCount}"
-		# puts "Charge Type Count: #{randomDeck.chgTypeCount}"
-		# puts "Charge Tincture Count: #{randomDeck.chgTincCount}"
-		# puts "\n"
-		# puts "Split Field Proportion: #{randomDeck.fldSplitCount}"
-		# puts "Double Charge Type Proportion: #{randomDeck.dblChgTypeCount}"
-		# puts "Double Charge Tincture Proportion: #{randomDeck.dblChgTincCount}"
-		# puts "\n"
-		# puts "Deck Length: #{randomDeck.length}"
-		# puts "Total Connectivity: #{randomDeck.grand_conn}"
+		puts "Total Connectivity: #{randomDeck.grand_conn}"
 		return randomDeck
 
 	end
@@ -450,10 +389,5 @@ class Deck
 end
 
 
-1.times do |i|
-	rando = Deck.randomFill
-	rando.save("Random Deck #{i}")
-end
 
-
-# Problem: Oscillates between 1 field, 1 charge vassals and 2 field, 2 unique charge vassals... need to get it to do a diversity
+rando = Deck.randomFill
