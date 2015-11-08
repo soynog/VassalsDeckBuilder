@@ -1,0 +1,182 @@
+***STATS***
+
+Escutcheon Count: {"Iberian"=>27, "Swiss"=>27, "French"=>26}
+Field Count: {"Argent"=>24, "Or"=>24, "Sable"=>25, "Gules"=>23, "Azure"=>24}
+Charge Type Count: {"Crescent"=>19, "Fleur-de-Lis"=>20, "Cross"=>20, "Rose"=>21, "Lion"=>20, "Eagle"=>20}
+Charge Tincture Count: {"Argent"=>23, "Or"=>25, "Sable"=>23, "Gules"=>25, "Azure"=>24}
+
+Common Charges:
+Crescent: {"Argent"=>7, "Azure"=>7}
+Fleur-de-Lis: {"Or"=>6, "Azure"=>6}
+Cross: {"Gules"=>6}
+Rose: {"Gules"=>9}
+Lion: {"Or"=>9}
+Eagle: {"Azure"=>8}
+
+Split Field Proportion: 40.0
+Double Charge Type Proportion: 40.0
+Double Charge Tincture Proportion: 40.0
+
+Deck Length: 80
+Total Connectivity: 1.5409374999999996
+
+RandomHouse 1: esc French | field(s) Gules | charge(s) Cross Sable | Connectivity: 1.1
+
+RandomHouse 2: esc Iberian | field(s) Argent, Sable | charge(s) Crescent Azure | Connectivity: 1.425
+
+RandomHouse 3: esc Iberian | field(s) Azure | charge(s) Lion Or, Crescent Or | Connectivity: 1.375
+
+RandomHouse 4: esc Swiss | field(s) Argent, Azure | charge(s) Eagle Sable, Lion Sable | Connectivity: 1.65
+
+RandomHouse 5: esc Swiss | field(s) Gules | charge(s) Fleur-de-Lis Argent, Fleur-de-Lis Or | Connectivity: 1.4125
+
+RandomHouse 6: esc Iberian | field(s) Or, Sable | charge(s) Fleur-de-Lis Gules, Fleur-de-Lis Azure | Connectivity: 1.7375
+
+RandomHouse 7: esc Swiss | field(s) Argent | charge(s) Rose Sable, Cross Gules | Connectivity: 1.675
+
+RandomHouse 8: esc French | field(s) Gules, Sable | charge(s) Crescent Argent, Rose Or | Connectivity: 1.9375
+
+RandomHouse 9: esc French | field(s) Or | charge(s) Rose Gules | Connectivity: 1.15
+
+RandomHouse 10: esc Swiss | field(s) Or, Argent | charge(s) Cross Gules | Connectivity: 1.4375
+
+RandomHouse 11: esc Iberian | field(s) Gules | charge(s) Fleur-de-Lis Or, Eagle Or | Connectivity: 1.375
+
+RandomHouse 12: esc Swiss | field(s) Sable, Or | charge(s) Rose Azure, Crescent Azure | Connectivity: 1.675
+
+RandomHouse 13: esc Iberian | field(s) Azure | charge(s) Lion Sable, Lion Argent | Connectivity: 1.4
+
+RandomHouse 14: esc French | field(s) Gules, Azure | charge(s) Eagle Or, Eagle Argent | Connectivity: 1.6875
+
+RandomHouse 15: esc French | field(s) Gules | charge(s) Lion Argent, Crescent Sable | Connectivity: 1.6
+
+RandomHouse 16: esc Iberian | field(s) Argent, Or | charge(s) Cross Azure, Rose Gules | Connectivity: 1.975
+
+RandomHouse 17: esc French | field(s) Or | charge(s) Eagle Azure | Connectivity: 1.125
+
+RandomHouse 18: esc Swiss | field(s) Argent, Sable | charge(s) Lion Or | Connectivity: 1.45
+
+RandomHouse 19: esc French | field(s) Azure | charge(s) Eagle Argent, Fleur-de-Lis Argent | Connectivity: 1.35
+
+RandomHouse 20: esc Swiss | field(s) Or, Argent | charge(s) Rose Gules, Eagle Gules | Connectivity: 1.6875
+
+RandomHouse 21: esc Swiss | field(s) Azure | charge(s) Lion Or, Lion Argent | Connectivity: 1.425
+
+RandomHouse 22: esc Iberian | field(s) Sable, Azure | charge(s) Cross Gules, Cross Sable | Connectivity: 1.725
+
+RandomHouse 23: esc Swiss | field(s) Or | charge(s) Cross Sable, Fleur-de-Lis Azure | Connectivity: 1.65
+
+RandomHouse 24: esc Iberian | field(s) Azure, Sable | charge(s) Fleur-de-Lis Or, Lion Argent | Connectivity: 1.9625
+
+RandomHouse 25: esc French | field(s) Gules | charge(s) Eagle Sable | Connectivity: 1.1
+
+RandomHouse 26: esc French | field(s) Or, Argent | charge(s) Crescent Azure | Connectivity: 1.4
+
+RandomHouse 27: esc French | field(s) Sable | charge(s) Lion Azure, Eagle Azure | Connectivity: 1.375
+
+RandomHouse 28: esc Swiss | field(s) Argent, Gules | charge(s) Cross Azure, Fleur-de-Lis Azure | Connectivity: 1.65
+
+RandomHouse 29: esc Iberian | field(s) Gules | charge(s) Fleur-de-Lis Argent, Fleur-de-Lis Sable | Connectivity: 1.3875
+
+RandomHouse 30: esc Swiss | field(s) Or, Gules | charge(s) Rose Gules, Rose Or | Connectivity: 1.7375
+
+RandomHouse 31: esc French | field(s) Sable | charge(s) Cross Or, Crescent Gules | Connectivity: 1.675
+
+RandomHouse 32: esc Iberian | field(s) Argent, Azure | charge(s) Rose Gules, Fleur-de-Lis Sable | Connectivity: 1.9625
+
+RandomHouse 33: esc Iberian | field(s) Or | charge(s) Crescent Gules | Connectivity: 1.1375
+
+RandomHouse 34: esc Swiss | field(s) Sable, Gules | charge(s) Cross Argent | Connectivity: 1.4125
+
+RandomHouse 35: esc Swiss | field(s) Sable | charge(s) Lion Or, Fleur-de-Lis Or | Connectivity: 1.4
+
+RandomHouse 36: esc French | field(s) Argent, Azure | charge(s) Cross Azure, Rose Azure | Connectivity: 1.6625
+
+RandomHouse 37: esc French | field(s) Or | charge(s) Eagle Azure, Eagle Sable | Connectivity: 1.4
+
+RandomHouse 38: esc Iberian | field(s) Azure, Sable | charge(s) Eagle Sable, Eagle Or | Connectivity: 1.725
+
+RandomHouse 39: esc Iberian | field(s) Sable | charge(s) Lion Gules, Crescent Argent | Connectivity: 1.6625
+
+RandomHouse 40: esc Swiss | field(s) Gules, Or | charge(s) Lion Sable, Eagle Gules | Connectivity: 1.9375
+
+RandomHouse 41: esc Iberian | field(s) Argent | charge(s) Fleur-de-Lis Azure | Connectivity: 1.1375
+
+RandomHouse 42: esc Swiss | field(s) Gules, Argent | charge(s) Rose Or | Connectivity: 1.4375
+
+RandomHouse 43: esc Iberian | field(s) Azure | charge(s) Cross Argent, Crescent Argent | Connectivity: 1.35
+
+RandomHouse 44: esc French | field(s) Azure, Sable | charge(s) Lion Sable, Eagle Sable | Connectivity: 1.65
+
+RandomHouse 45: esc Swiss | field(s) Azure | charge(s) Fleur-de-Lis Or, Fleur-de-Lis Argent | Connectivity: 1.425
+
+RandomHouse 46: esc French | field(s) Azure, Sable | charge(s) Crescent Argent, Crescent Azure | Connectivity: 1.6875
+
+RandomHouse 47: esc Iberian | field(s) Or | charge(s) Crescent Gules, Rose Sable | Connectivity: 1.6625
+
+RandomHouse 48: esc French | field(s) Argent, Gules | charge(s) Fleur-de-Lis Gules, Cross Argent | Connectivity: 1.925
+
+RandomHouse 49: esc French | field(s) Argent | charge(s) Eagle Azure | Connectivity: 1.125
+
+RandomHouse 50: esc French | field(s) Gules, Azure | charge(s) Lion Or | Connectivity: 1.4125
+
+RandomHouse 51: esc Iberian | field(s) Gules | charge(s) Crescent Argent, Rose Argent | Connectivity: 1.35
+
+RandomHouse 52: esc Swiss | field(s) Argent, Sable | charge(s) Lion Gules, Crescent Gules | Connectivity: 1.675
+
+RandomHouse 53: esc Swiss | field(s) Or | charge(s) Eagle Sable, Eagle Azure | Connectivity: 1.4125
+
+RandomHouse 54: esc Swiss | field(s) Sable, Argent | charge(s) Rose Argent, Rose Gules | Connectivity: 1.7375
+
+RandomHouse 55: esc Iberian | field(s) Azure | charge(s) Fleur-de-Lis Or, Cross Sable | Connectivity: 1.6625
+
+RandomHouse 56: esc French | field(s) Or, Gules | charge(s) Fleur-de-Lis Azure, Lion Or | Connectivity: 1.9375
+
+RandomHouse 57: esc Iberian | field(s) Sable | charge(s) Eagle Or | Connectivity: 1.1625
+
+RandomHouse 58: esc Iberian | field(s) Azure, Gules | charge(s) Rose Sable | Connectivity: 1.4125
+
+RandomHouse 59: esc Swiss | field(s) Or | charge(s) Cross Gules, Rose Gules | Connectivity: 1.4
+
+RandomHouse 60: esc French | field(s) Argent, Azure | charge(s) Eagle Azure, Crescent Azure | Connectivity: 1.6375
+
+RandomHouse 61: esc Iberian | field(s) Gules | charge(s) Lion Or, Lion Sable | Connectivity: 1.4125
+
+RandomHouse 62: esc Iberian | field(s) Or, Sable | charge(s) Crescent Azure, Crescent Argent | Connectivity: 1.7
+
+RandomHouse 63: esc French | field(s) Gules | charge(s) Cross Argent, Rose Sable | Connectivity: 1.625
+
+RandomHouse 64: esc Swiss | field(s) Or, Azure | charge(s) Eagle Azure, Crescent Or | Connectivity: 1.95
+
+RandomHouse 65: esc French | field(s) Or | charge(s) Lion Azure | Connectivity: 1.125
+
+RandomHouse 66: esc Swiss | field(s) Sable, Argent | charge(s) Cross Gules | Connectivity: 1.45
+
+RandomHouse 67: esc Iberian | field(s) Argent | charge(s) Fleur-de-Lis Azure, Rose Azure | Connectivity: 1.3875
+
+RandomHouse 68: esc French | field(s) Gules, Argent | charge(s) Cross Or, Eagle Or | Connectivity: 1.65
+
+RandomHouse 69: esc Iberian | field(s) Gules | charge(s) Rose Argent, Rose Sable | Connectivity: 1.4
+
+RandomHouse 70: esc Swiss | field(s) Azure, Or | charge(s) Crescent Argent, Crescent Gules | Connectivity: 1.7
+
+RandomHouse 71: esc French | field(s) Argent | charge(s) Fleur-de-Lis Sable, Cross Azure | Connectivity: 1.6375
+
+RandomHouse 72: esc Swiss | field(s) Azure, Sable | charge(s) Lion Or, Rose Gules | Connectivity: 2.0
+
+RandomHouse 73: esc Iberian | field(s) Sable | charge(s) Lion Gules | Connectivity: 1.1625
+
+RandomHouse 74: esc Swiss | field(s) Argent, Or | charge(s) Eagle Sable | Connectivity: 1.4125
+
+RandomHouse 75: esc Swiss | field(s) Argent | charge(s) Fleur-de-Lis Gules, Cross Gules | Connectivity: 1.3875
+
+RandomHouse 76: esc Iberian | field(s) Or, Azure | charge(s) Eagle Azure, Cross Azure | Connectivity: 1.6625
+
+RandomHouse 77: esc French | field(s) Azure | charge(s) Lion Argent, Lion Or | Connectivity: 1.4125
+
+RandomHouse 78: esc Iberian | field(s) Sable, Gules | charge(s) Rose Gules, Rose Or | Connectivity: 1.75
+
+RandomHouse 79: esc Swiss | field(s) Sable | charge(s) Fleur-de-Lis Argent, Crescent Azure | Connectivity: 1.65
+
+RandomHouse 80: esc French | field(s) Or, Sable | charge(s) Fleur-de-Lis Gules, Rose Or | Connectivity: 1.9875
+

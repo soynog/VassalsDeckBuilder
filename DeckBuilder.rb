@@ -145,7 +145,7 @@ class Vassal
 		charge_str = @charges.collect {|c| c.to_s}
 		case mode
 		when 1
-			"#{@name}: escutcheon #{@escutcheon.to_s}; field(s) #{@field.to_s}; charge(s) #{charge_str.join(", ")}."
+			"#{@name}: esc #{@escutcheon.to_s} | field(s) #{@field.to_s} | charge(s) #{charge_str.join(", ")} |"
 		when 2	
 			"#{@name}\n" + 
 			"Escutcheon: #{@escutcheon.to_s}\n" + 
@@ -281,7 +281,8 @@ class Deck
 		deckFile.puts( "Total Connectivity: #{self.grand_conn}")
 		deckFile.puts( "\n")
 		@deck.each do |v|
-			deckFile.puts("#{v.to_s} Connectivity: #{self.connectivity(v).to_s}")
+			deckFile.puts("#{v.to_s} Connectivity: #{self.conn_mean(v)}")
+			deckFile.puts("\n")
 		end
 	end
 	
@@ -402,7 +403,7 @@ class Deck
 			chgTincAry = (randomDeck.chgTincCount.select {|k,v| v <= (randomDeck.chgTincCount.values.min + asp_toler)}).keys
 			
 			# add a random vassal using allowable aspect arrays as inputs
-			newVass = Vassal.random("RandomHouse",fldCount,chgTypeCount,chgTincCount,escAry,fldAry,chgTypeAry,chgTincAry)
+			newVass = Vassal.random("RandomHouse #{randomDeck.length + 1}",fldCount,chgTypeCount,chgTincCount,escAry,fldAry,chgTypeAry,chgTincAry)
 
 			# Random Vassal function fails, remove the last vassal created and try again.
 			if newVass == false
@@ -411,7 +412,7 @@ class Deck
 				errorCount += 1
 			# Otherwise, test it for acceptibility.
 			elsif randomDeck.length > 0 && randomDeck.connectivity(newVass)[0] > max_conn
-			 	puts "#{randomDeck.connectivity(newVass)[0]}****************************NO GOOOOOOD*******************************"
+			 	#puts "#{randomDeck.connectivity(newVass)[0]}****************************NO GOOOOOOD*******************************"
 			 	errorCount += 1
 			else			
 				# puts newVass.to_s
@@ -425,9 +426,9 @@ class Deck
 			# puts errorCount
 
 			if errorCount > 100
-				puts "Them's the breaks!"
-				puts "Total Connectivity: #{randomDeck.grand_conn}"
-				break
+				#puts "Them's the breaks!"
+				#puts "Total Connectivity: #{randomDeck.grand_conn}"
+				return false
 			end
 		end
 
@@ -450,9 +451,20 @@ class Deck
 end
 
 
-1.times do |i|
+10000.times do |i|
 	rando = Deck.randomFill
-	rando.save("Random Deck #{i}")
+	print "#{i+10001}, "
+	if rando && \
+			rando.chgComboCount("Crescent").keys.include?("Argent" || "Azure" || "Or") && \
+			rando.chgComboCount("Fleur-de-Lis").keys.include?("Or") && \
+			rando.chgComboCount("Cross").keys.include?("Gules" || "Sable" || "Azure" || "Argent" || "Or") && \
+			rando.chgComboCount("Rose").keys.include?("Gules" || "Azure" || "Sable" || "Argent") && \
+			rando.chgComboCount("Lion").keys.include?("Or") && \
+			rando.chgComboCount("Eagle").keys.include?("Azure" || "Sable")
+		puts "AWESOME!!! #{i+10001}"
+		rando.save("Random Deck #{i+10001}") if rando
+	end
+
 end
 
 
